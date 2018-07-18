@@ -25,6 +25,7 @@
             <local:member_graph/>
             <local:UserControl1/>
             <local:UserControl2/>
+            <local:UserControl3/>
         </StackPanel>
     </Grid>
 </Window>

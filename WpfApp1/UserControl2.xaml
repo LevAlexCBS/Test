@@ -37,7 +37,7 @@
                 <Ellipse  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" 
                   Height="15" 
                   Width="15"
-                  Margin="10 -2 0 5"
+                  Margin="-10 -2 0 5"
                   Canvas.Left="753"
                   Stroke="Blue" />
 
@@ -46,7 +46,7 @@
                   Width="8"
                   Canvas.Left="753"
                   Canvas.Bottom="-7"
-                  Margin="14 0 0 0"
+                  Margin="-7 0 0 0"
                   Stroke="Blue"/>
                 
             </Canvas>
