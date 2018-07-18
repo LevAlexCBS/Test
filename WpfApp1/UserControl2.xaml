@@ -30,14 +30,15 @@
                 <Line X1="0" Y1="5" X2="150" Y2="5" 
                       Stroke="Black" 
                       StrokeThickness="2"/>
-                <Line X1="100" Y1="5" X2="250" Y2="5" 
+                <Line X1="100" Y1="5" X2="753" Y2="5" 
                       Stroke="Black"
                       HorizontalAlignment="Right"
                       StrokeThickness="2"/>
                 <Ellipse  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" 
                   Height="15" 
                   Width="15"
-                  Margin="750 -2 0 5"
+                  Margin="10 -2 0 5"
+                  Canvas.Left="753"
                   Stroke="Blue" />
 
                 <Ellipse  Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" 
@@ -45,6 +46,7 @@
                   Width="8"
                   Canvas.Left="753"
                   Canvas.Bottom="-7"
+                  Margin="14 0 0 0"
                   Stroke="Blue"/>
                 
             </Canvas>
