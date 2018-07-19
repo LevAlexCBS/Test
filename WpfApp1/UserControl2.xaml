@@ -48,7 +48,7 @@
                   Canvas.Bottom="-7"
                   Margin="-7 0 0 0"
                   Stroke="Blue"/>
-                
+               
             </Canvas>
         </Viewbox>
         <TextBlock Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Bottom">Loading</TextBlock>

@@ -21,7 +21,6 @@
             <ColumnDefinition />
             <ColumnDefinition Width="60" />
         </Grid.ColumnDefinitions>
-
         <Viewbox Grid.Row="1"
                  Grid.Column="1"
                  Grid.ColumnSpan="2">
@@ -74,7 +73,9 @@
                          Margin="-10 0 0 0"
                          IsEnabled="{Binding IsJCircleVisible}"
                          Stroke="Black" />
-
+                <Ellipse Height="30" Width="30" Stroke="Blue" Canvas.Bottom="-10"/>
+                <Ellipse Height="4" Width="4" Fill="blue" Stroke="Blue" Canvas.Bottom="3" Canvas.Left="13"/>
+                <local:Triangle/>
             </Canvas>
 
         </Viewbox>

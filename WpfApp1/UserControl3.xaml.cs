@@ -53,7 +53,8 @@ namespace WpfApp1
                 Canvas.SetBottom(text, 100);
                 canvas.Children.Add(text);
             }
-
+            var trg = new Triangle() { Stroke = Brushes.Black };
+            canvas.Children.Add(trg);
 
         }
     }
