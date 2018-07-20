@@ -58,7 +58,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Triangle.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="GeometryExtensions.cs" />
+    <Compile Include="pointload.xaml.cs">
+      <DependentUpon>pointload.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="XYPointLoad.cs" />
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
@@ -68,6 +73,7 @@
     <Compile Include="UserControl3.xaml.cs">
       <DependentUpon>UserControl3.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ZPointLoad.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -81,6 +87,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="member_graph.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="pointload.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
