@@ -63,6 +63,9 @@
     <Compile Include="pointload.xaml.cs">
       <DependentUpon>pointload.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControl4.xaml.cs">
+      <DependentUpon>UserControl4.xaml</DependentUpon>
+    </Compile>
     <Compile Include="XYPointLoad.cs" />
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
@@ -103,6 +106,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControl3.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControl4.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

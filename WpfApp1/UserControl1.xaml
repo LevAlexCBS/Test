@@ -24,27 +24,15 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="{Binding Label}"/>
+
         <Viewbox  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
-            <Canvas Height="10" Width="1000">
-                <Line X1="0" Y1="5" X2="1000" Y2="5" Stroke="Black" StrokeThickness="0.5"/>
-                <Line X1="100" Y1="5" X2="{Binding lengthroffset}" Y2="5" 
-                      Stroke="Black"
-                      HorizontalAlignment="Right"
-                      StrokeThickness="2"/>
-                <Ellipse Width="4" Height="4" Stretch="None"/>
-                <Ellipse  Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" 
-                  Height="5" 
-                  Width="4"
-                  Margin="0 0 0 0"
-                  Stroke="Blue" 
-                  HorizontalAlignment="Left"/>
+            <Canvas Height="100" Width="2000">
+                <Line X1="0" Y1="50" X2="2000" Y2="50" Stroke="Black" StrokeThickness="1"/>
+
+
             </Canvas>
         </Viewbox>
-        <Ellipse Grid.Row="2" Grid.Column="1" Width="45" Fill="Green" Stroke="Black" StrokeThickness="2" HorizontalAlignment="Left" Margin="57,24,0,-21" Height="45" VerticalAlignment="Top"/>
         <Ellipse Grid.Row="1" Grid.Column="2" Width="5" Height="5" Fill="Black" HorizontalAlignment="Right"/>
-        <Line Grid.Row="2" Stroke="Gray" StrokeThickness="3" X1="10" Y1="45" X2="45" Y2="45" Grid.ColumnSpan="2" Margin="92,0,290,27" Grid.Column="1"/>
-
-        <Line Grid.Row="2" Stroke="Black" StrokeThickness="1" X1="10" Y1="45" X2="80" Y2="45" Grid.ColumnSpan="2" Margin="92,0,290,27" Grid.Column="1"/>
 
 
         <TextBlock Grid.Column="1" Text="{Binding INode}" Foreground="#FF00C800" Margin="5,0,335,57" Grid.ColumnSpan="2" Grid.RowSpan="3" />

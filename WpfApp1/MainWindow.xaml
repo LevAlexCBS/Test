@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1102.632" Width="998.684">
     <Window.DataContext>
         <local:MemberDTO/>
     </Window.DataContext>
-            <Grid x:Name="mygrid">
+    <Grid x:Name="mygrid">
         <!--<Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -26,6 +26,7 @@
             <local:UserControl1/>
             <local:UserControl2/>
             <local:UserControl3/>
+            <local:UserControl4/>
         </StackPanel>
     </Grid>
 </Window>

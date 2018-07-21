@@ -22,60 +22,60 @@
             <ColumnDefinition Width="60"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" Text="{Binding Path=Label}"/>
-        <Line Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" X1="5" Y1="5.5" X2="45" Y2="5.5" Stroke="Black" StrokeThickness="2">
-                <Line.Style>
-                    <Style TargetType="{x:Type Line}">
-                        <Setter Property="Visibility" Value="Hidden"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsIOffset}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Line.Style>
-            </Line>
-            <Ellipse Grid.Row="1" Grid.Column="1" Width="10" Height="10" Stroke="Black" HorizontalAlignment="Left" Margin="45 0 0 0">
-                <Ellipse.Style>
-                    <Style TargetType="{x:Type Ellipse}">
-                        <Setter Property="Visibility" Value="Visible"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsJNode}" Value="True">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Ellipse.Style>
-            </Ellipse>
-            <Ellipse Grid.Row="1" Grid.Column="1" Width="5" Height="5" Fill="Black" HorizontalAlignment="Left"/>
-            <Ellipse Grid.Row="1" Grid.Column="2" Width="10" Height="10" HorizontalAlignment="Right" Stroke="Black" Margin="0 0 45 0">
-                <Ellipse.Style>
-                    <Style TargetType="{x:Type Ellipse}">
-                        <Setter Property="Visibility" Value="Visible"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsINode}" Value="True">
-                                <Setter Property="Visibility" Value="Hidden"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Ellipse.Style>
 
-            </Ellipse>
-            <Line Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="1" Y2="0" Stroke="Black" StrokeThickness="1" Stretch="Uniform"/>
-            <Line x:Name="loff"   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" X1="0" Y1="5.5" X2="45" Y2="5.5" Stroke="Black" StrokeThickness="2" HorizontalAlignment="Right">
-                <Line.Style>
-                    <Style TargetType="{x:Type Line}">
-                        <Setter Property="Visibility" Value="Hidden"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding IsJOffset}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </Line.Style>
-            </Line>
-            <Ellipse Grid.Row="1" Grid.Column="2" Width="5" Height="5" Fill="Black" HorizontalAlignment="Right"/>
-            <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=INode}" Foreground="#FF00C800" />
+        <Line Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" X1="5" Y1="5.5" X2="45" Y2="5.5" Stroke="Black" StrokeThickness="2">
+            <Line.Style>
+                <Style TargetType="{x:Type Line}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsIOffset}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Line.Style>
+        </Line>
+        <Ellipse Grid.Row="1" Grid.Column="1" Width="10" Height="10" Stroke="Black" HorizontalAlignment="Left" Margin="45 0 0 0">
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsJNode}" Value="True">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+        </Ellipse>
+        <Ellipse Grid.Row="1" Grid.Column="1" Width="5" Height="5" Fill="Black" HorizontalAlignment="Left"/>
+        <Ellipse Grid.Row="1" Grid.Column="2" Width="10" Height="10" HorizontalAlignment="Right" Stroke="Black" Margin="0 0 45 0">
+            <Ellipse.Style>
+                <Style TargetType="{x:Type Ellipse}">
+                    <Setter Property="Visibility" Value="Visible"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsINode}" Value="True">
+                            <Setter Property="Visibility" Value="Hidden"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Ellipse.Style>
+
+        </Ellipse>
+        <Line Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" X1="0" Y1="0" X2="1" Y2="0" Stroke="Black" StrokeThickness="1" Stretch="Uniform"/>
+        <Line x:Name="loff"   Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" X1="0" Y1="5.5" X2="45" Y2="5.5" Stroke="Black" StrokeThickness="2" HorizontalAlignment="Right">
+            <Line.Style>
+                <Style TargetType="{x:Type Line}">
+                    <Setter Property="Visibility" Value="Hidden"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsJOffset}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Line.Style>
+        </Line>
+        <Ellipse Grid.Row="1" Grid.Column="2" Width="5" Height="5" Fill="Black" HorizontalAlignment="Right"/>
+        <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Path=INode}" Foreground="#FF00C800" />
         <TextBlock Grid.Row="2" Grid.Column="3" HorizontalAlignment="Left" Text="{Binding Path=JNode}"  Foreground="#FF00C800" ></TextBlock>
     </Grid>
 </UserControl>
