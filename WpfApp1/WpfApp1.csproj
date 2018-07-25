@@ -58,15 +58,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DistributedLoad.cs" />
     <Compile Include="GeometryExtensions.cs" />
+    <Compile Include="LoadDirection.cs" />
     <Compile Include="UserControl5.xaml.cs">
       <DependentUpon>UserControl5.xaml</DependentUpon>
     </Compile>
     <Compile Include="XYPointLoad.cs" />
+    <Compile Include="XYPointLoad_.cs" />
     <Compile Include="UserControl1.xaml.cs">
       <DependentUpon>UserControl1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ZPointLoad.cs" />
+    <Compile Include="PointLoad.cs" />
     <Compile Include="ZPointLoad_.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

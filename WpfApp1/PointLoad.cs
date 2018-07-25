@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace WpfApp1
 {
-    public class ZPointLoad
+    public class PointLoad
     {
         private double _magnitude;
         public double Magnitude { get; set; }
+        public LoadDirection Direction { get; set; }
         public double Location
         {
             get
@@ -26,10 +27,11 @@ namespace WpfApp1
                     _magnitude = value;                    
             }
         }
-        public ZPointLoad(double magnitude, double location)
+        public PointLoad(double magnitude, double location, LoadDirection direction)
         {
             Location = location;
             Magnitude = magnitude;
+            Direction = direction;
         }
 
     }
