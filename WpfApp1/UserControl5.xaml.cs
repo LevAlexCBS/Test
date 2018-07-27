@@ -28,7 +28,7 @@ namespace WpfApp1
         public string JNode { get; set; } = "JNode";
 
         public List<PointLoad> PointLoads { get; set; }
-        public DistributedLoad DistributedLoad { get; set; }
+        public List<DistributedLoad> DistributedLoads { get; set; }
         #endregion
 
 
@@ -37,19 +37,51 @@ namespace WpfApp1
 
             PointLoads = new List<PointLoad>
             {
-                new PointLoad(10,200, LoadDirection.x),
-                new PointLoad(35, 700, LoadDirection.Z),
-                new PointLoad(35, 650, LoadDirection.Mx),
-                new PointLoad(35, 550, LoadDirection.My),
-                new PointLoad(35, 850, LoadDirection.Mz)
+                //new PointLoad(10,200, LoadDirection.x),
+                //new PointLoad(35, 700, LoadDirection.Z),
+                //new PointLoad(35, 650, LoadDirection.Mx),
+                //new PointLoad(-1, 250, LoadDirection.Mx),
+                //new PointLoad(35, 550, LoadDirection.My),
+                //new PointLoad(-1, 350, LoadDirection.My),
+                new PointLoad(35, 850, LoadDirection.Mz),
+                new PointLoad(-1, 500, LoadDirection.Mz),
             };
-            DistributedLoad = new DistributedLoad
+            DistributedLoads = new List<DistributedLoad>
             {
-                StartMagnitude = 100,
-                EndMagnitude = 100,
-                Direction = LoadDirection.Z,
-                StartLocation = 100,
-                EndLocation = 900,
+                //new DistributedLoad
+                //{
+                //    StartMagnitude = 0,
+                //    EndMagnitude = -10,
+                //    Direction = LoadDirection.Z,
+                //    StartLocation = 250,
+                //    EndLocation = 500,
+                //},
+                //new DistributedLoad
+                //{
+                //    StartMagnitude = 100,
+                //    EndMagnitude = 50,
+                //    Direction = LoadDirection.Y,
+                //    StartLocation = 200,
+                //    EndLocation = 500,
+                //},
+
+                //new DistributedLoad
+                //{
+                //    StartMagnitude = 100,
+                //    EndMagnitude = 100,
+                //    Direction = LoadDirection.X,
+                //    StartLocation = 100,
+                //    EndLocation = 900,
+                //},
+                //new DistributedLoad
+                //{
+                //    StartMagnitude = 100,
+                //    EndMagnitude = 100,
+                //    Direction = LoadDirection.Mx,
+                //    StartLocation = 100,
+                //    EndLocation = 900,
+                //}
+
             };
 
             InitializeComponent();
@@ -91,8 +123,22 @@ namespace WpfApp1
                 StrokeThickness = 4,
                 Stroke = Brushes.Gray
             };
-            var inode = new Ellipse { Width = 8, Height = 8, Stroke = Brushes.Black, Fill = Brushes.Green, StrokeThickness = 0.5 };
-            var jnode = new Ellipse { Width = 8, Height = 8, Stroke = Brushes.Black, Fill = Brushes.Green, StrokeThickness = 0.5 };
+            var inode = new Ellipse
+            {
+                Width = 8,
+                Height = 8,
+                Stroke = Brushes.Black,
+                Fill = Brushes.Green,
+                StrokeThickness = 0.5
+            };
+            var jnode = new Ellipse
+            {
+                Width = 8,
+                Height = 8,
+                Stroke = Brushes.Black,
+                Fill = Brushes.Green,
+                StrokeThickness = 0.5
+            };
             canvas.Children.Add(member);
             canvas.Children.Add(ioffsetline);
             canvas.Children.Add(joffsetline);
@@ -102,8 +148,8 @@ namespace WpfApp1
             Canvas.SetLeft(jnode, 1000);
             canvas.Children.Add(jnode);
 
-            DrawText(10, 255, INode, Color.FromRgb(0, 255, 100));
-            DrawText(1010, 255, JNode, Color.FromRgb(0, 255, 0));
+            DrawText(10, 255, INode, Color.FromRgb(0, 128, 0));
+            DrawText(1010, 255, JNode, Color.FromRgb(0, 128, 0));
         }
 
         private void DrawText(double x, double y, string text, Color color)
@@ -153,14 +199,14 @@ namespace WpfApp1
         private void DrawMzPointLoad(PointLoad item)
         {
             PathFigure pthFigure = new PathFigure();
-            pthFigure.StartPoint = new Point(item.Location - 20, 220);
+            pthFigure.StartPoint = new Point(item.Location - 20, 225);
 
             ArcSegment arcSeg = new ArcSegment();
-            arcSeg.Point = new Point(item.Location - 10, 280); ;
-            arcSeg.Size = new Size(3, 3);
-            arcSeg.IsLargeArc = false;
+            arcSeg.Point = new Point(item.Location - 20 , 275); 
+            arcSeg.Size = new Size(30, 30);
+            arcSeg.IsLargeArc = true;
             arcSeg.SweepDirection = SweepDirection.Clockwise;
-            arcSeg.RotationAngle = 280;
+            
 
             PathSegmentCollection myPathSegmentCollection = new PathSegmentCollection();
             myPathSegmentCollection.Add(arcSeg);
@@ -187,14 +233,16 @@ namespace WpfApp1
 
         private void DrawMyPointLoad(PointLoad load)
         {
-            var line = new Line { X1 = load.Location - load.Magnitude, X2 = load.Location + load.Magnitude, Y1 = 250, Y2 = 250, Stroke = Brushes.Blue, StrokeThickness = 2 };
+            var line = new Line { X1 = load.Location - 30, X2 = load.Location + 30, Y1 = 250, Y2 = 250, Stroke = Brushes.Blue, StrokeThickness = 2 };
             canvas.Children.Add(line);
+            DrawText(load.Location + 30, 230, load.Magnitude + "k-ft", Color.FromRgb(0, 0, 255));
         }
 
         private void DrawMxPointLoad(PointLoad load)
         {
-            var line = new Line { X1 = load.Location, X2 = load.Location, Y1 = 250 + load.Magnitude, Y2 = 250 - load.Magnitude, Stroke = Brushes.Blue };
+            var line = new Line { X1 = load.Location, X2 = load.Location, Y1 = 285, Y2 = 215, Stroke = Brushes.Blue };
             canvas.Children.Add(line);
+            DrawText(load.Location + 5, 200, load.Magnitude + "k-ft", Color.FromRgb(0, 0, 255));
         }
 
         private void DrawYPointLoads(PointLoad load)
@@ -238,69 +286,119 @@ namespace WpfApp1
         #region DrawingDistributedLoad
         private void DrawDistributedLoad()
         {
-            if (DistributedLoad == null)
+            if (DistributedLoads == null)
                 return;
-
-            switch (DistributedLoad.Direction)
+            foreach (var item in DistributedLoads)
             {
-                case LoadDirection.X:
-                case LoadDirection.x:
-                    break;
-                case LoadDirection.Y:
-                case LoadDirection.y:
-                    DrawYDistributedLoad();
-                    break;
-                case LoadDirection.Z:
-                case LoadDirection.z:
-                    DrawZDistributedLoad();
-                    break;
-                case LoadDirection.Mx:
-                    break;
+                switch (item.Direction)
+                {
+                    case LoadDirection.X:
+                    case LoadDirection.x:
+                        DrawXDistributedLoad(item);
+                        break;
+                    case LoadDirection.Y:
+                    case LoadDirection.y:
+                        DrawYDistributedLoad(item);
+                        break;
+                    case LoadDirection.Z:
+                    case LoadDirection.z:
+                        DrawZDistributedLoad(item);
+                        break;
+                    case LoadDirection.Mx:
+                        DrawMxDistributedLoad(item);
+                        break;
+                }
             }
 
         }
 
-
-        #endregion
-        private void DrawYDistributedLoad()
+        private void DrawMxDistributedLoad(DistributedLoad load)
         {
+            for (int i = 0; i < Math.Floor((load.EndLocation - load.StartLocation) / 20) + 1; i++)
+            {
+                var newx = load.StartLocation + i * 20;
+                var line = new Line
+                {
+                    X1 = newx,
+                    X2 = newx,
+                    Y1 = 240,
+                    Y2 = 260,
+                    Stroke = Brushes.DarkViolet,
+                    StrokeThickness = 1
+                };
+                canvas.Children.Add(line);
+            }
+        }
+
+        private void DrawXDistributedLoad(DistributedLoad load)
+        {
+            for (int i = 0; i < Math.Floor((load.EndLocation - load.StartLocation) / 20) + 1; i++)
+            {
+                var newx = load.StartLocation + i * 20;
+                var uparrow = new Line
+                {
+                    X1 = newx,
+                    X2 = newx + 25,
+                    Y1 = 250,
+                    Y2 = 240,
+                    Stroke = Brushes.DarkViolet,
+                    StrokeThickness = 1
+                };
+                var downarrow = new Line
+                {
+                    X1 = newx,
+                    X2 = newx + 25,
+                    Y1 = 250,
+                    Y2 = 260,
+                    Stroke = Brushes.DarkViolet,
+                    StrokeThickness = 1
+                };
+                canvas.Children.Add(uparrow);
+                canvas.Children.Add(downarrow);
+            }
+        }
+
+
+        private void DrawYDistributedLoad(DistributedLoad load)
+        {
+
             var lineload = new Line
             {
-                X1 = DistributedLoad.StartLocation,
-                X2 = DistributedLoad.EndLocation,
-                Y1 = DistributedLoad.StartMagnitude,
-                Y2 = DistributedLoad.EndMagnitude, 
+                X1 = load.StartLocation,
+                X2 = load.EndLocation,
+                Y1 = load.StartMagnitude,
+                Y2 = load.EndMagnitude,
                 Stroke = Brushes.DarkViolet,
                 StrokeThickness = 2
             }; ;
             canvas.Children.Add(lineload);
-            for (int i = 0; i < Math.Floor((1000 - JOffset - IOffset) / 20) + 1; i++)
+            for (int i = 0; i < Math.Floor((load.EndLocation - load.StartLocation) / 20) + 1; i++)
             {
-                var newx = DistributedLoad.StartLocation + i * 20;
+                var newx = load.StartLocation + i * 20;
                 var line = new Line
                 {
                     X1 = newx,
                     X2 = newx,
                     Y1 = 250,
-                    Y2 = Line(newx),
+                    Y2 = Line(newx, load),
                     Stroke = Brushes.DarkViolet,
                     StrokeThickness = 1
                 };
                 var larrow = new Line
                 {
                     X1 = newx,
-                    X2 = newx - 5,
+                    X2 = newx - 10,
                     Y1 = 250,
-                    Y2 = 235,
+                    Y2 = 230,
                     Stroke = Brushes.DarkViolet,
                     StrokeThickness = 1
                 };
                 var rarrow = new Line
                 {
                     X1 = newx,
-                    X2 = newx + 5,
+                    X2 = newx + 10,
                     Y1 = 250,
-                    Y2 = 235,
+                    Y2 = 230,
                     Stroke = Brushes.DarkViolet,
                     StrokeThickness = 1
                 };
@@ -309,28 +407,32 @@ namespace WpfApp1
                 canvas.Children.Add(rarrow);
             }
 
-            DrawText(DistributedLoad.StartLocation - 45, DistributedLoad.StartMagnitude, DistributedLoad.StartLabelLoad, Color.FromRgb(0, 0, 0));
-            DrawText(DistributedLoad.EndLocation + 10, DistributedLoad.EndMagnitude - 10, DistributedLoad.EndLabelLoad, Color.FromRgb(0, 0, 0));
+            DrawText(load.StartLocation - 45, load.StartMagnitude, load.StartLabelLoad, Color.FromRgb(0, 0, 0));
+            DrawText(load.EndLocation + 10, load.EndMagnitude - 10, load.EndLabelLoad, Color.FromRgb(0, 0, 0));
         }
 
-        private void DrawZDistributedLoad()
+        private void DrawZDistributedLoad(DistributedLoad load)
         {
-            var load = new Line
+            for (int i = 0; i < Math.Floor((load.EndLocation - load.StartLocation) / 20) + 1; i++)
             {
-                X1 = 0 + DistributedLoad.StartLocation,
-                Y1 = 250,
-                X2 = DistributedLoad.EndLocation,
-                Y2 = 250,
-                StrokeThickness = 6,
-                StrokeDashArray = new DoubleCollection() { 1, 2 },
-                Stroke = Brushes.DarkViolet
-            };
-            canvas.Children.Add(load);
+                var circle = new Ellipse()
+                {
+                    Height = 6,
+                    Width = 6,
+                    Fill = Brushes.DarkViolet,
+                    Stroke = Brushes.DarkViolet
+                };
+                Canvas.SetTop(circle, 247);
+                Canvas.SetLeft(circle, load.StartLocation + i * 20);
+                canvas.Children.Add(circle);
+                DrawText(load.StartLocation, 230, load.StartMagnitude + "k/ft", Color.FromRgb(148, 0, 211));
+                DrawText(load.EndLocation, 230, load.EndMagnitude + "k/ft", Color.FromRgb(148, 0, 211));
+            }
         }
-
-        private double Line(double x)
+        #endregion
+        private double Line(double x, DistributedLoad load)
         {
-            return ((x - DistributedLoad.StartLocation) * (DistributedLoad.EndMagnitude - DistributedLoad.StartMagnitude)) / (DistributedLoad.EndLocation - DistributedLoad.StartLocation) + DistributedLoad.StartMagnitude;
+            return ((x - load.StartLocation) * (load.EndMagnitude - load.StartMagnitude)) / (load.EndLocation - load.StartLocation) + load.StartMagnitude;
         }
 
 

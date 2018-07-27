@@ -10,6 +10,15 @@
         z,
         Mx,
         My,
-        Mz
+        Mz,
+        PX,
+        PY,
+        PZ,
+        Sy,
+        Sz,
+        SX,
+        SY,
+        SZ,
+        T,
     }
 }
