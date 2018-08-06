@@ -14,11 +14,14 @@ namespace WpfApp1
     {
         private Canvas _canvas;
         public IEnumerable<PointLoad> _pointLoads;
-
+        double max_magnitude, min_magnitude;
         public DrawingPointLoadsHelper(Canvas canvas, IEnumerable<PointLoad> pointLoads)
         {
             _canvas = canvas;
             _pointLoads = pointLoads;
+
+            max_magnitude = _pointLoads.Max(x => Math.Abs(x.Magnitude));
+
             DrawPointLoads();
         }
         private void DrawPointLoads()
@@ -161,18 +164,7 @@ namespace WpfApp1
 
         private void DrawYPointLoads(PointLoad load)
         {
-            double _magnitude;
-            if (load.Magnitude < 1 && load.Magnitude > 0)
-                _magnitude = 1;
-            else if (load.Magnitude > -1 && load.Magnitude < 0)
-                _magnitude = -1;
-            else if (load.Magnitude > 15)
-                _magnitude = 15;
-            else if (load.Magnitude < -15)
-                _magnitude = -15;
-            else
-                _magnitude = load.Magnitude;
-
+            var _magnitude = load.Magnitude / max_magnitude * 15;
             var scale = 3.33;
             var scalearrowY = 0.866;
             var scalearrowX = _magnitude > 0 ? 0.33 : -0.33;
