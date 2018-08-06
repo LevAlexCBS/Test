@@ -60,8 +60,8 @@
     </ApplicationDefinition>
     <Compile Include="Loads\DistributedLoad.cs" />
     <Compile Include="GeometryExtensions.cs" />
-    <Compile Include="Loads\DrawingDistributedLoadService.cs" />
-    <Compile Include="Loads\DrawingPointLoadsService.cs" />
+    <Compile Include="Loads\DrawingDistributedLoadHelper.cs" />
+    <Compile Include="Loads\DrawingPointLoadsHelper.cs" />
     <Compile Include="Loads\LoadDirection.cs" />
     <Compile Include="UserControl5.xaml.cs">
       <DependentUpon>UserControl5.xaml</DependentUpon>
