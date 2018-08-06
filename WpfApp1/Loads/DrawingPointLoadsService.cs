@@ -138,6 +138,7 @@ namespace WpfApp1
 
         private void DrawMyPointLoad(PointLoad load)
         {
+
             var line = new Line
             {
                 X1 = load.Location - 30,
@@ -160,13 +161,29 @@ namespace WpfApp1
 
         private void DrawYPointLoads(PointLoad load)
         {
+            double _magnitude;
+            if (load.Magnitude < 1 && load.Magnitude > 0)
+                _magnitude = 1;
+            else if (load.Magnitude > -1 && load.Magnitude < 0)
+                _magnitude = -1;
+            else if (load.Magnitude > 15)
+                _magnitude = 15;
+            else if (load.Magnitude < -15)
+                _magnitude = -15;
+            else
+                _magnitude = load.Magnitude;
+
+            var scale = 3.33;
+            var scalearrowY = 0.866;
+            var scalearrowX = _magnitude > 0 ? 0.33 : -0.33;
+
 
             var line = new Line
             {
                 X1 = load.Location,
                 X2 = load.Location,
                 Y1 = 250,
-                Y2 = load.Magnitude < 0 ? 200 : 300,
+                Y2 = load.Magnitude < 0 ? _magnitude * scale + 230 : _magnitude * scale + 270,
                 Stroke = Brushes.Blue
             };
             var arrow = new Polyline()
@@ -174,8 +191,8 @@ namespace WpfApp1
                 Points = new PointCollection
                 {
                     new Point(load.Location, 250),
-                    new Point(load.Location - 10, load.Magnitude < 0 ? 235 : 265),
-                    new Point(load.Location + 10,load.Magnitude < 0 ? 235 : 265),
+                    new Point(load.Location - (_magnitude* scalearrowX) - 5,_magnitude < 0 ? _magnitude * scalearrowY + 240 : _magnitude * scalearrowY + 260),
+                    new Point(load.Location + (_magnitude* scalearrowX) + 5,_magnitude < 0 ? _magnitude * scalearrowY + 240 : _magnitude * scalearrowY + 260),
                 },
                 Fill = Brushes.Blue
             };

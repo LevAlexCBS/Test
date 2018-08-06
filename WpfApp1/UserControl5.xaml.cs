@@ -37,7 +37,16 @@ namespace WpfApp1
             #region Test Loads
             PointLoads = new List<PointLoad>
             {
-                //new PointLoad(-10,400, LoadDirection.Y),
+                //new PointLoad(-100,340, LoadDirection.Y),
+                //new PointLoad(-15,400, LoadDirection.Y),
+                //new PointLoad(-10,450, LoadDirection.Y),
+                //new PointLoad(-5,470, LoadDirection.Y),
+                //new PointLoad(-1,490, LoadDirection.Y),
+                //new PointLoad(100,680, LoadDirection.Y),
+                //new PointLoad(15,590, LoadDirection.Y),
+                //new PointLoad(10,560, LoadDirection.Y),
+                //new PointLoad(5,530, LoadDirection.Y),
+                //new PointLoad(1,510, LoadDirection.Y),
                 //new PointLoad(35, 700, LoadDirection.Z),
                 //new PointLoad(35, 650, LoadDirection.Mx),
                 //new PointLoad(-1, 250, LoadDirection.Mx),
@@ -48,22 +57,22 @@ namespace WpfApp1
             };
             DistributedLoads = new List<DistributedLoad>
             {
-                //new DistributedLoad
-                //{
-                //    StartMagnitude = 0,
-                //    EndMagnitude = -10,
-                //    Direction = LoadDirection.Z,
-                //    StartLocation = 250,
-                //    EndLocation = 500,
-                //},
                 new DistributedLoad
                 {
-                    StartMagnitude = -100,
-                    EndMagnitude = -25,
-                    Direction = LoadDirection.SY,
-                    StartLocation = 200,
+                    StartMagnitude = 0,
+                    EndMagnitude = 10,
+                    Direction = LoadDirection.X,
+                    StartLocation = 250,
                     EndLocation = 500,
                 },
+                //new DistributedLoad
+                //{
+                //    StartMagnitude = 30,
+                //    EndMagnitude = 60,
+                //    Direction = LoadDirection.Y,
+                //    StartLocation = 200,
+                //    EndLocation = 500,
+                //},
 
                 //new DistributedLoad
                 //{

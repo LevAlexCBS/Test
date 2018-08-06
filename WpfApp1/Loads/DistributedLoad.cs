@@ -2,7 +2,6 @@
 {
     public class DistributedLoad
     {
-        private double _startMagnitude;
 
         public double StartLocation { get; set; }
 

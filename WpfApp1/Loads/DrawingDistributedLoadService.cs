@@ -125,15 +125,21 @@ namespace WpfApp1
 
         private void DrawXDistributedLoad(DistributedLoad load)
         {
-            for (int i = 0; i < Math.Floor((load.EndLocation - load.StartLocation) / 20) + 1; i++)
+            double scaleY = 0.8, scaleX = 2.0;
+            double smag = load.StartMagnitude;
+            double arrownum = Math.Floor((load.EndLocation - load.StartLocation) / 20) + 1;
+            double step = (load.EndMagnitude - load.StartMagnitude) / arrownum;
+            var direction = load.StartMagnitude >= 0 && load.EndMagnitude >= 0;
+            for (int i = 0; i < arrownum; i++)
             {
+               
                 var newx = load.StartLocation + i * 20;
                 var uparrow = new Line
                 {
                     X1 = newx,
-                    X2 = load.StartMagnitude < load.EndMagnitude ? newx - 25 : newx + 25,
+                    X2 = direction ? newx - scaleX * smag - 5 : newx + scaleX * -smag + 5,
                     Y1 = 250,
-                    Y2 = 240,
+                    Y2 = scaleY * (smag > 0 ? -smag : smag) + 248,
                     Stroke = Brushes.DarkViolet,
                     StrokeThickness = 1,
 
@@ -141,16 +147,18 @@ namespace WpfApp1
                 var downarrow = new Line
                 {
                     X1 = newx,
-                    X2 = load.StartMagnitude < load.EndMagnitude ? newx - 25 : newx + 25,
+                    X2 = direction ? newx - scaleX * smag - 5 : newx + scaleX * -smag + 5,
                     Y1 = 250,
-                    Y2 = 260,
+                    Y2 = -scaleY * (smag > 0 ? -smag : smag) + 252,
                     Stroke = Brushes.DarkViolet,
                     StrokeThickness = 1,
                 };
+                smag += step;
                 _canvas.Children.Add(uparrow);
                 _canvas.Children.Add(downarrow);
                 DrawText(load.StartLocation - 20, 220, load.StartMagnitude + " k/ft", Color.FromRgb(148, 0, 211));
                 DrawText(load.EndLocation, 220, load.EndMagnitude + " k/ft", Color.FromRgb(148, 0, 211));
+                
             }
         }
 
@@ -176,11 +184,38 @@ namespace WpfApp1
                 Y2 = 250 + load.EndMagnitude,
                 Stroke = color,
                 StrokeThickness = 2
-            }; ;
+            };
             _canvas.Children.Add(lineload);
+
+
             for (int i = 0; i < Math.Floor((load.EndLocation - load.StartLocation) / 20) + 1; i++)
             {
+                double scaleY = 20, scaleX = 10, angle, maxload;
                 var newx = load.StartLocation + i * 20;
+                angle = GetAngle(load);
+                maxload = Math.Abs(load.StartMagnitude) > Math.Abs(load.EndMagnitude) ? load.StartMagnitude : -load.EndMagnitude;
+                if (angle < 0 && (250 - Line(newx, load)) > 250)
+                {
+                    scaleY = 20 * (Line(newx, load) / maxload);
+                    scaleX = 10 * (Line(newx, load) / maxload);
+                }
+                if (angle < 0 && (250 - Line(newx, load)) < 250)
+                {
+                    scaleY = -20 * ((Line(newx, load) / maxload));
+                    scaleX = -10 * ((Line(newx, load) / maxload));
+                }
+                if (angle > 0 && (250 - Line(newx, load)) < 250)
+                {
+                    scaleY = 20 * ((Line(newx, load) / maxload));
+                    scaleX = 10 * ((Line(newx, load) / maxload));
+                }
+                if (angle > 0 && (250 - Line(newx, load)) > 250)
+                {
+                    scaleY = -20 * ((Line(newx, load) / maxload));
+                    scaleX = -10 * ((Line(newx, load) / maxload));
+                }
+
+
                 var line = new Line
                 {
                     X1 = newx,
@@ -193,18 +228,18 @@ namespace WpfApp1
                 var larrow = new Line
                 {
                     X1 = newx,
-                    X2 = newx - 10,
+                    X2 = newx - scaleX,
                     Y1 = 250,
-                    Y2 = (250 - Line(newx, load)) > 250 ? 230 : 270,
+                    Y2 = (250 - Line(newx, load)) > 250 ? (250 - scaleY) : (250 + scaleY),
                     Stroke = color,
                     StrokeThickness = 1
                 };
                 var rarrow = new Line
                 {
                     X1 = newx,
-                    X2 = newx + 10,
+                    X2 = newx + scaleX,
                     Y1 = 250,
-                    Y2 = (250 - Line(newx, load)) > 250 ? 230 : 270,
+                    Y2 = (250 - Line(newx, load)) > 250 ? (250 - scaleY) : (250 + scaleY),
                     Stroke = color,
                     StrokeThickness = 1
                 };
@@ -215,6 +250,7 @@ namespace WpfApp1
 
             DrawText(load.StartLocation - 45, 250 + load.StartMagnitude, load.StartMagnitude + units, Color.FromRgb(0, 0, 0));
             DrawText(load.EndLocation + 10, 250 + load.EndMagnitude - 10, load.EndMagnitude + units, Color.FromRgb(0, 0, 0));
+            DrawText(100, 100, GetAngle(load).ToString(), Color.FromRgb(0, 0, 0));
         }
 
         private void DrawZDistributedLoad(DistributedLoad load)
@@ -239,6 +275,10 @@ namespace WpfApp1
         private double Line(double x, DistributedLoad load)
         {
             return ((x - load.StartLocation) * (load.EndMagnitude - load.StartMagnitude)) / (load.EndLocation - load.StartLocation) + load.StartMagnitude;
+        }
+        private double GetAngle(DistributedLoad load)
+        {
+            return Math.Atan((load.EndMagnitude - load.StartMagnitude) / (load.StartLocation - load.EndLocation)) * 180 / Math.PI;
         }
         private void DrawText(double x, double y, string text, Color color)
         {
